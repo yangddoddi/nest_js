@@ -1,4 +1,4 @@
-class UserCreateRequest {
+export class UserCreateRequest {
   constructor(
     public readonly name: string,
     public readonly email: string,

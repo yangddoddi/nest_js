@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DomainService } from './domain.service';
+import { DomainService } from '@app/domain/domain.service';
 
 describe('DomainService', () => {
   let service: DomainService;
@@ -15,4 +15,6 @@ describe('DomainService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined();
   });
+
+  it('')
 });

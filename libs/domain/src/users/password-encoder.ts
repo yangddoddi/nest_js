@@ -1,3 +1,3 @@
 interface PasswordEncoder {
-  encode(password: string): Promise<string>;
+  encode(password: string): string;
 }
