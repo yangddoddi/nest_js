@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { MarketApiModule } from './market-api.module';
-import { ValidationPipe } from '@nestjs/common';
+import { Logger, ValidationPipe } from "@nestjs/common";
+import { LoggingInterceptor } from "@app/config/logging-interceptor.service";
 
 async function bootstrap() {
   const app = await NestFactory.create(MarketApiModule);
@@ -11,6 +12,8 @@ async function bootstrap() {
       forbidNonWhitelisted: true,
     }),
   );
+
+  app.useGlobalInterceptors(new LoggingInterceptor(await app.get(Logger)));
 
   await app.listen(3000);
 }

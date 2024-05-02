@@ -30,7 +30,7 @@ export class CommonResponse<T> {
 }
 
 @Injectable()
-export class Interceptor implements NestInterceptor {
+export class LoggingInterceptor implements NestInterceptor {
   constructor(private readonly logger: Logger) {}
 
   intercept(
@@ -39,16 +39,20 @@ export class Interceptor implements NestInterceptor {
   ): Observable<SuccessResponse<unknown>> {
     const request = context.switchToHttp().getRequest();
 
-    this.logger.log({
-      method: request.method,
-      path: request.path,
-      body: request.body,
-      headers: request.headers,
-    });
-
-    return next.handle().pipe(
-      map((data) => new SuccessResponse(instanceToPlain(data))),
-      tap((data) => this.logger.log(data)),
+    this.logger.log(
+      'request ' +
+        JSON.stringify({
+          method: request.method,
+          path: request.path,
+          body: request.body,
+          headers: request.headers,
+        }),
     );
+
+    return next
+      .handle()
+      .pipe(
+        tap((data) => this.logger.log('response: ' + JSON.stringify(data))),
+      );
   }
 }
