@@ -1,3 +1,5 @@
+import { SignupRequest } from '@app/domain/users/dto/signup-request.dto';
+
 export class UserCreateRequest {
   constructor(
     public readonly name: string,

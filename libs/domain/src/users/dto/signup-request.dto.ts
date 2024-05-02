@@ -1,4 +1,4 @@
-class SignupRequest {
+export class SignupRequest {
   constructor(
     public readonly name: string,
     public readonly email: string,

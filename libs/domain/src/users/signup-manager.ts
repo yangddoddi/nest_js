@@ -1,10 +1,16 @@
 import { UserRepository } from '@app/domain/users/repository/user.repository';
 import { User } from '@app/domain/entities/user.entity';
 import { UserCreateRequest } from '@app/domain/users/dto/user-create-request.dto';
+import { SignupRequest } from '@app/domain/users/dto/signup-request.dto';
+import { PasswordEncoder } from '@app/domain/users/password-encoder';
+import { Inject, Injectable } from '@nestjs/common';
 
+@Injectable()
 export class SignupManager {
   constructor(
+    @Inject('UserRepository')
     private readonly userRepository: UserRepository,
+    @Inject('PasswordEncoder')
     private readonly passwordEncoder: PasswordEncoder,
   ) {}
 
@@ -22,6 +28,6 @@ export class SignupManager {
       encodedPassword,
     );
 
-    return await this.userRepository.create(userCreateRequest);
+    return await this.userRepository.saveUser(userCreateRequest);
   }
 }

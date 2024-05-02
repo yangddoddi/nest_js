@@ -2,6 +2,7 @@ import { SignupManager } from '@app/domain/users/signup-manager';
 import { UserRepository } from '@app/domain/users/repository/user.repository';
 import { FakeUserRepository } from './fake-user.repository';
 import { FakePasswordEncoder } from './fake-password-encoder';
+import { PasswordEncoder } from '@app/domain/users/password-encoder';
 
 describe('SignupManager', () => {
   let signupManager: SignupManager;
@@ -22,7 +23,7 @@ describe('SignupManager', () => {
     // given
     const email = '테스트이메일';
 
-    await userRepository.create({
+    await userRepository.saveUser({
       email: email,
       name: '테스트이름',
       encodedPassword: '테스트패스워드',

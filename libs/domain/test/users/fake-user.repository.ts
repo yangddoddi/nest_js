@@ -10,7 +10,7 @@ export class FakeUserRepository implements UserRepository {
     return this.users.find((user) => user.getEmail() === email) ?? null;
   }
 
-  async create(request: UserCreateRequest): Promise<User> {
+  async saveUser(request: UserCreateRequest): Promise<User> {
     const user = new User(
       this.id++,
       request.name,

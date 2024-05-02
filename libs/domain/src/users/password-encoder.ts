@@ -1,3 +1,3 @@
-interface PasswordEncoder {
+export interface PasswordEncoder {
   encode(password: string): string;
 }
