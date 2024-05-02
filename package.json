@@ -82,7 +82,8 @@
     ],
     "moduleNameMapper": {
       "^@app/domain(|/.*)$": "<rootDir>/libs/domain/src/$1",
-      "^@app/typeorm(|/.*)$": "<rootDir>/libs/typeorm/src/$1"
+      "^@app/typeorm(|/.*)$": "<rootDir>/libs/typeorm/src/$1",
+      "^@app/config(|/.*)$": "<rootDir>/libs/config/src/$1"
     }
   }
 }
